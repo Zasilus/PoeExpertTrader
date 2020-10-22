@@ -8,10 +8,24 @@ print(range(len(json_result["lines"])))
 #for n in range(len(json_result["lines"])):
     #print(json_result["lines"][n])
 
-currentStats = dict()
+currencyStats = dict()
 for x in range(len(json_result["lines"])):
-    this_card = json_result["lines"][x]['currencyTypeName']
+    this_currency = json_result["lines"][x]['currencyTypeName']
     this_price = json_result["lines"][x]['chaosEquivalent']
-    currentStats.update({this_card:this_price})
+    currencyStats.update({this_currency:this_price})
 
-print(currentStats)
+print(currencyStats)
+
+respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=Blight&type=DivinationCard")
+raw_div_data = respDiv.content
+json_div_results = json.loads(raw_div_data)
+
+divinationStats = dict()
+for x in range(len(json_div_results["lines"])):
+    this_card = json_div_results["lines"][x]['name']
+    this_value = json_div_results["lines"][x]['chaosValue']
+    this_trade = json_div_results["lines"][x]['explicitModifiers']
+    this_stack = json_div_results["lines"][x]['stackSize']
+    divinationStats.update({this_card:[this_value,this_trade,this_stack]})
+
+print(divinationStats)
