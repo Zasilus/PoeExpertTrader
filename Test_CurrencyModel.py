@@ -1,14 +1,10 @@
 import unittest
-import testcase
 from CurrencyModel import *
 
 class Test_CurrencyModel(unittest.TestCase):
-
-    def test_pullCurrency():
-        pullCurrency()
-        assert currencyStats is not None
-    
+   
     def test_calculateExchangeDifference(self):
+        pullCurrency()
         calculateExchangeDifference()
         check = True
         for x in currencyStats:
@@ -20,6 +16,7 @@ class Test_CurrencyModel(unittest.TestCase):
         self.assertTrue(check)
 
     def test_calculateROI(self):
+        pullCurrency()
         calculateROI()
         check = True
         for x in currencyStats:
@@ -29,3 +26,11 @@ class Test_CurrencyModel(unittest.TestCase):
             if (inner_check == False):
                 check = False
         self.assertTrue(check)
+    
+    def test_getCurrencyData(self):
+        pullCurrency()
+        output = getCurrencyData()
+        assert output is not None
+
+if __name__ == "__main__":
+    unittest.main()
