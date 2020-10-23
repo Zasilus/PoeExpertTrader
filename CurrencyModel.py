@@ -7,7 +7,7 @@ def main():
     pullCurrency()
     print("Currency Pulled Collected")
     calculateROI()
-    print(currencyStats)
+    #print(currencyStats)
 
 def pullCurrency():
     global currencyStats
@@ -15,7 +15,7 @@ def pullCurrency():
     #raw_data = resp.content
     f = open("currencyoverview.json", "r")
     raw_data = f.read()
-    f.close();
+    f.close()
     json_result = json.loads(raw_data)
     for x in range(len(json_result["lines"])):
         this_currency = json_result["lines"][x]['currencyTypeName']
@@ -28,14 +28,12 @@ def pullCurrency():
         currencyStats.update({this_currency:curr_dict})
 
 def calculateExchangeDifference():
-    print("Calculating exchange differences")
     global currencyStats
     for x in currencyStats:
         difference = currencyStats[x]['pay'] - currencyStats[x]['receive']
         currencyStats[x].update({"difference":difference})
 
 def calculateROI():
-    print("Calculating ROI")
     calculateExchangeDifference()
     global currencyStats
     for x in currencyStats:

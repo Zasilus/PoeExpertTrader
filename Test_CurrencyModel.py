@@ -1,4 +1,6 @@
 import unittest
+import io
+import sys
 from CurrencyModel import *
 
 class Test_CurrencyModel(unittest.TestCase):
@@ -31,6 +33,13 @@ class Test_CurrencyModel(unittest.TestCase):
         pullCurrency()
         output = getCurrencyData()
         assert output is not None
+    
+    def test_main(self):
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main()
+        sys.stdout = sys.__stdout__
+        assert capturedOutput.getvalue() is not None
 
 if __name__ == "__main__":
     unittest.main()
