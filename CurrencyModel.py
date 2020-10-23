@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 currencyStats = dict()
 
 def main():
@@ -27,7 +26,6 @@ def pullCurrency():
         curr_dict = {"pay": this_sell_price, "receive":this_buy_price,"ChaosEquivalent":this_price}
         currencyStats.update({this_currency:curr_dict})
 
-
 def calculateExchangeDifference():
     print("Calculating exchange differences")
     global currencyStats
@@ -48,5 +46,6 @@ def calculateROI():
 def getCurrencyData():
     global currencyStats
     return currencyStats
+    
 if __name__ == '__main__':
     main()
