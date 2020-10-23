@@ -15,6 +15,7 @@ def pullCurrency():
     #raw_data = resp.content
     f = open("currencyoverview.json", "r")
     raw_data = f.read()
+    f.close();
     json_result = json.loads(raw_data)
     for x in range(len(json_result["lines"])):
         this_currency = json_result["lines"][x]['currencyTypeName']
