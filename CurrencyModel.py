@@ -7,6 +7,7 @@ def main():
     pullCurrency()
     print("Currency Pulled Collected")
     calculateROI()
+    print(currencyStats)
     #print(currencyStats)
 
 def pullCurrency():
