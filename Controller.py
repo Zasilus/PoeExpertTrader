@@ -21,62 +21,58 @@ class Controller:
 
     def __init__(self):
         self.getCurrencyData()
-        print(self.currencySort)
-        print(self.currencyDirection)
-        alphabet = self.sortCurrencyByName()
-        print("Alphabet is \n", alphabet)
-        alphaList = list(alphabet.keys())
-        print("Alpha list is \n",*alphaList)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByName()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByName()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByExchange()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByExchange()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByExchange()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.sortCurrencyByROI()
-        print(self.currencySort)
-        print(self.currencyDirection)
+        #print(self.currencySort)
+        #print(self.currencyDirection)
         self.calculateCurrencyOptimal(200)
-        print("----------------------------")
+        #print("----------------------------")
         self.getDivData()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByName()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByName()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByProfitPerCard()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByProfitPerCard()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByProfitPerCard()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByProfitPerStack()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByProfitPerStack()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByROI()
-        print(self.divinationSort)
-        print(self.divinationDirection)
+        #print(self.divinationSort)
+        #print(self.divinationDirection)
         self.sortDivinationByROI()
-        print(self.divinationSort)
-        print(self.divinationDirection)     
+        #print(self.divinationSort)
+        #print(self.divinationDirection)     
 
     def main(self):
         self.getCurrencyData()
@@ -112,7 +108,7 @@ class Controller:
                 optimal_value = currency_Return
                 optimal_Currency = currency_Name
             counter = counter + 1
-        print (optimal_Currency, optimal_value)
+        #print (optimal_Currency, optimal_value)
         return optimal_Currency
         
     def sortCurrencyByName(self):
@@ -127,7 +123,7 @@ class Controller:
         else:
             nameCStats = OrderedDict(sorted(self.controllerCStats.items()))
             self.currencyDirection = True
-        print("\n By name: \n",nameCStats)
+        #print("\n By name: \n",nameCStats)
         return nameCStats
 
     def sortCurrencyByExchange(self):
@@ -142,7 +138,7 @@ class Controller:
         else:
             exchangeCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True))
             self.currencyDirection = True
-        print("\n By Exchange Difference: \n", exchangeCStats)
+        #print("\n By Exchange Difference: \n", exchangeCStats)
         return exchangeCStats
 
     def sortCurrencyByROI(self):
@@ -157,7 +153,7 @@ class Controller:
         else:
             roiCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True))
             self.currencyDirection = True
-        print("\n By ROI: \n",roiCStats)
+        #print("\n By ROI: \n",roiCStats)
         return roiCStats
     
     def sortDivinationByName(self):
@@ -172,7 +168,7 @@ class Controller:
         else:
             nameDStats = OrderedDict(sorted(self.controllerDStats.items()))
             self.divinationDirection = True
-        print("\n By name: \n",nameDStats)
+        #print("\n By name: \n",nameDStats)
         return nameDStats
     
     def sortDivinationByProfitPerStack(self):
@@ -187,7 +183,7 @@ class Controller:
         else:
             stackDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"), reverse= True ))
             self.divinationDirection = True
-        print("\n By Profit Per Stack: \n", stackDStats)
+        #print("\n By Profit Per Stack: \n", stackDStats)
         return stackDStats
 
     def sortDivinationByProfitPerCard(self):
@@ -202,7 +198,7 @@ class Controller:
         else:
             cardDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"), reverse= True))
             self.divinationDirection = True
-        print("\n By Profit Per Card: \n", cardDStats)
+        #print("\n By Profit Per Card: \n", cardDStats)
         return cardDStats
     
     def sortDivinationByROI(self):
@@ -217,7 +213,7 @@ class Controller:
         else:
             roiDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"), reverse= True))
             self.divinationDirection = True
-        print("\n By ROI: \n", roiDStats)
+        #print("\n By ROI: \n", roiDStats)
         return roiDStats
     
     def filterCurrency(self):
