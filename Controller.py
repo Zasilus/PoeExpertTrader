@@ -74,13 +74,13 @@ class Controller:
         #print(self.divinationSort)
         #print(self.divinationDirection)     
 
-    def main(self):
-        self.getCurrencyData()
-        print(self.controllerCStats)
-        name = self.sortCurrencyByName()
-        print(name)
-        self.sortCurrencyByExchange()
-        self.sortCurrencyByROI()
+    #def main(self):
+        #self.getCurrencyData()
+        #print(self.controllerCStats)
+        #name = self.sortCurrencyByName()
+        #print(name)
+        #self.sortCurrencyByExchange()
+        #self.sortCurrencyByROI()
 
     def getDivData(self):
         self.controllerDStats
