@@ -216,6 +216,12 @@ class Controller:
         print("\n By ROI: \n", roiDStats)
         return roiDStats
     
+    def filterCurrency(self):
+        "empty"
+
+    def filterDivination(self):
+        "empty"
+
     def returnView(self):
         "empty"
 
