@@ -23,6 +23,10 @@ class Controller:
         self.getCurrencyData()
         print(self.currencySort)
         print(self.currencyDirection)
+        alphabet = self.sortCurrencyByName()
+        print("Alphabet is \n", alphabet)
+        alphaList = list(alphabet.keys())
+        print("Alpha list is \n",*alphaList)
         self.sortCurrencyByName()
         print(self.currencySort)
         print(self.currencyDirection)
@@ -72,7 +76,7 @@ class Controller:
         print(self.divinationDirection)
         self.sortDivinationByROI()
         print(self.divinationSort)
-        print(self.divinationDirection)
+        print(self.divinationDirection)     
 
     def main(self):
         self.getCurrencyData()
@@ -129,14 +133,14 @@ class Controller:
     def sortCurrencyByExchange(self):
         exchangeCStats = self.controllerCStats
         if (self.currencySort != "Exchange"):
-            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True)
+            exchangeCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True))
             self.currencySort = "Exchange"
             self.currencyDirection = True
         elif(self.currencySort == "Exchange" and self.currencyDirection == True):
-            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'))
+            exchangeCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference')))
             self.currencyDirection = False
         else:
-            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True)
+            exchangeCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True))
             self.currencyDirection = True
         print("\n By Exchange Difference: \n", exchangeCStats)
         return exchangeCStats
@@ -144,14 +148,14 @@ class Controller:
     def sortCurrencyByROI(self):
         roiCStats = self.controllerCStats
         if (self.currencySort != "ROI"):
-            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True)
+            roiCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True))
             self.currencySort = "ROI"
             self.currencyDirection = True
         elif (self.currencySort == "ROI" and self.currencyDirection == True):
-            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'))
+            roiCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI')))
             self.currencyDirection = False
         else:
-            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True)
+            roiCStats = OrderedDict(sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True))
             self.currencyDirection = True
         print("\n By ROI: \n",roiCStats)
         return roiCStats
@@ -174,14 +178,14 @@ class Controller:
     def sortDivinationByProfitPerStack(self):
         stackDStats = self.controllerDStats
         if (self.divinationSort != "Stack"):
-            stackDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"), reverse= True )
+            stackDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"), reverse= True))
             self.divinationSort = "Stack"
             self.divinationDirection = True
         elif (self.divinationSort == "Stack" and self.divinationDirection == True):
-            stackDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"))
+            stackDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference")))
             self.divinationDirection = False
         else:
-            stackDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"), reverse= True )
+            stackDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "difference"), reverse= True ))
             self.divinationDirection = True
         print("\n By Profit Per Stack: \n", stackDStats)
         return stackDStats
@@ -189,14 +193,14 @@ class Controller:
     def sortDivinationByProfitPerCard(self):
         cardDStats = self.controllerDStats
         if (self.divinationSort != "Card"):
-            cardDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"), reverse= True )
+            cardDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"), reverse= True))
             self.divinationSort = "Card"
             self.divinationDirection = True
         elif(self.divinationSort == "Card" and self.divinationDirection == True):
-            cardDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"))
+            cardDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard")))
             self.divinationDirection = False
         else:
-            cardDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"), reverse= True )
+            cardDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "profitPerCard"), reverse= True))
             self.divinationDirection = True
         print("\n By Profit Per Card: \n", cardDStats)
         return cardDStats
@@ -204,14 +208,14 @@ class Controller:
     def sortDivinationByROI(self):
         roiDStats = self.controllerDStats
         if (self.divinationSort != "ROI"):
-            roiDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"), reverse= True )
+            roiDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"), reverse= True))
             self.divinationSort = "ROI"
             self.divinationDirection = True
         elif(self.divinationSort == "ROI" and self.divinationDirection == True):
-            roiDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"))
+            roiDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI")))
             self.divinationDirection = False
         else:
-            roiDStats = sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"), reverse= True )
+            roiDStats = OrderedDict(sorted(self.controllerDStats.items(), key=lambda x:getitem(x[1], "ROI"), reverse= True))
             self.divinationDirection = True
         print("\n By ROI: \n", roiDStats)
         return roiDStats
