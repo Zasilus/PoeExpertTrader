@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from CurrencyModel import CurrencyModel
 
 class DivinationModel:
@@ -10,7 +11,10 @@ class DivinationModel:
         self.pullDivination()
         print("Divination Cards Pulled")
         self.pullUniqueStats()
-        self.getItemValue("Exalted Orb")
+        self.calculatePricePerStack()
+        self.calculateSellValue()
+        self.calculateROI()
+        self.calculateProfitPerCard()
 
     def pullDivination(self):
         f = open("divinationoverview.json", "r")
@@ -27,6 +31,8 @@ class DivinationModel:
                 this_trade = json_div_results["lines"][x]['explicitModifiers'][0]["text"]
                 this_trade = this_trade[this_trade.find("{")+1:this_trade.find("}")]
                 this_stack = json_div_results["lines"][x]['stackSize']
+                if this_stack == 0:
+                    this_stack = 1
                 div_entry = {"cost":this_value, "item":this_trade, "stackSize":this_stack}
                 self.divinationStats.update({this_card:div_entry})
        # print(self.divinationStats)
@@ -62,20 +68,68 @@ class DivinationModel:
             totalCost = basePrice * stackSize
             self.divinationStats[x].update({"StackPrice":totalCost})
 
+    def calculateSellValue(self):
+        del_dict = []
+        for x in self.divinationStats:
+            itemName = self.divinationStats[x]["item"]
+            itemValue = self.getItemValue(itemName)
+            if itemValue  == 0:
+                del_dict.append(x)
+            else:
+                self.divinationStats[x].update({"SellValue":itemValue})
+        #We delete everything we cannot determine the sell value for
+        for x in del_dict:
+            del self.divinationStats[x]
+    
     def calculateProfitPerStack(self):
-        return ""
+        for x in self.divinationStats:
+            difference = self.divinationStats[x]["SellValue"] - self.divinationStats[x]["StackPrice"]
+            self.divinationStats[x].update({"difference":difference})
+    
+    def calculateProfitPerCard(self):
+        self.calculateProfitPerStack()
+        for x in self.divinationStats:
+            difference = self.divinationStats[x]['difference']
+            stackSize = self.divinationStats[x]['stackSize']
+            profit = difference / stackSize
+            self.divinationStats[x].update({"profitPerCard":profit})
+
+    def calculateROI(self):
+        self.calculateProfitPerStack()
+        for x in self.divinationStats:
+            difference = self.divinationStats[x]['difference']
+            value = self.divinationStats[x]['StackPrice']
+            if value != 0.0:
+                roi = difference / value
+            else:
+                roi = 0
+            self.divinationStats[x].update({"ROI":roi})
+    
+    def getDivModel(self):
+        return self.divinationStats
+    # def calculateProfitPerStack(self):
+    #     for x in self.divinationStats:
+
 
     def getItemValue(self,itemName):
         #Check the Unique dictionary to see if its an item that exists inside it
         if itemName in self.uniqueItems:
-            print(self.uniqueItems[itemName])
+            #print(self.uniqueItems[itemName])
             return self.uniqueItems[itemName]
         else:
+            #Check to see if it is in the currency dictionary if it isn't we will have to check for for example 10x item
             currencyData = self.currencyModel.getCurrencyData()
-            print(currencyData)
             if itemName in currencyData:
-                print(currencyData[itemName]["ChaosEquivalent"])
+                #print(currencyData[itemName]["ChaosEquivalent"])
                 return currencyData[itemName]["ChaosEquivalent"]
+            #Checking to see if it is multiple currencies
+            elif bool(re.search(r'\dx', itemName)):
+                item = itemName[itemName.find(' ')+1:]
+                quantity = int(itemName[0:itemName.find('x')])
+                currencyPrice = currencyData[item]["ChaosEquivalent"]
+                return quantity * currencyPrice
+            else:
+                return 0
             
 
 
