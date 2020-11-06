@@ -1,58 +1,119 @@
 from operator import getitem
-from typing import OrderedDict
+from typing import OrderedDict, Tuple
 import requests
 import math
 import operator
 
-import CurrencyModel
+from CurrencyModel import CurrencyModel
 import DivinationModel
 
-controllerCStats = dict()
+class Controller:
+    controllerCStats = dict()
+    cModel = CurrencyModel()
 
-def main():
-    getCurrencyData()
-    print(controllerCStats)
-    sortCurrencyByName()
-    sortCurrencyByExchange()
-    sortCurrencyByROI()
+    currencySort = "None"
+    currencyDirection = False
 
-def getDivData():
-    "comment"
+    divinationSort = "None"
+    divinationDirection = False
 
-def getCurrencyData():
-    CurrencyModel.main()
-    global controllerCStats
-    controllerCStats = CurrencyModel.getCurrencyData()
+    def __init__(self):
+        self.getCurrencyData()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByName()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByName()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByExchange()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByExchange()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByExchange()
+        print(self.currencySort)
+        print(self.currencyDirection)
+        self.sortCurrencyByROI()
+        print(self.currencySort)
+        print(self.currencyDirection)
 
-def calculateCurrencyOptimal(chaosAmount: int):
-    optimal_value = 0
-    optimal_Currency = "None"
-    for x in controllerCStats:
-        currency_Name = controllerCStats[x]
-        currency_Get = math.floor(controllerCStats[x]['pay']/chaosAmount)
-        currency_Return = currency_Get * controllerCStats[x]['ROI']
-        if (currency_Return > optimal_value):
-            optimal_value = currency_Return
-            optimal_Currency = currency_Name
-    return optimal_Currency
-    
-def sortCurrencyByName():
-    global controllerCStats
-    nameCStats = OrderedDict(sorted(controllerCStats.items()))
-    print("\n By name: \n",nameCStats)
-    return nameCStats
+    def main(self):
+        self.getCurrencyData()
+        print(self.controllerCStats)
+        name = self.sortCurrencyByName()
+        print(name)
+        self.sortCurrencyByExchange()
+        self.sortCurrencyByROI()
 
-def sortCurrencyByExchange():
-    global controllerCStats
-    exchangeCStats = sorted(controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True)
-    print("\n By Exchange Difference: \n", exchangeCStats)
-    return exchangeCStats
+    def getDivData(self):
+        "comment"
 
-def sortCurrencyByROI():
-    global controllerCStats
-    roiCStats = sorted(controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True)
-    print("\n By ROI: \n",roiCStats)
-    return roiCStats
+    def getCurrencyData(self):
+        #cModel = CurrencyModel()
+        self.controllerCStats
+        self.controllerCStats = self.cModel.getCurrencyData()
+        self.currencyDirection = False
+        self.currencySort = "None"
+
+    def calculateCurrencyOptimal(self, chaosAmount: int):
+        optimal_value = 0
+        optimal_Currency = "None"
+        for x in self.controllerCStats:
+            currency_Name = self.controllerCStats[x]
+            currency_Get = math.floor(self.controllerCStats[x]['pay']/chaosAmount)
+            currency_Return = currency_Get * self.controllerCStats[x]['ROI']
+            if (currency_Return > optimal_value):
+                optimal_value = currency_Return
+                optimal_Currency = currency_Name
+        return optimal_Currency
+        
+    def sortCurrencyByName(self):
+        nameCStats = self.controllerCStats
+        if (self.currencySort != "Name"):
+            nameCStats = OrderedDict(sorted(self.controllerCStats.items()))
+            self.currencySort = "Name"
+            self.currencyDirection = True
+        elif (self.currencySort == "Name" and self.currencyDirection == True):
+            nameCStats = OrderedDict(sorted(self.controllerCStats.items(), reverse= True))
+            self.currencyDirection = False
+        else:
+            nameCStats = OrderedDict(sorted(self.controllerCStats.items()))
+            self.currencyDirection = True
+        print("\n By name: \n",nameCStats)
+        return nameCStats
+
+    def sortCurrencyByExchange(self):
+        exchangeCStats = self.controllerCStats
+        if (self.currencySort != "Exchange"):
+            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True)
+            self.currencySort = "Exchange"
+            self.currencyDirection = True
+        elif(self.currencySort == "Exchange" and self.currencyDirection == True):
+            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'))
+            self.currencyDirection = False
+        else:
+            exchangeCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'difference'), reverse=True)
+            self.currencyDirection = True
+        print("\n By Exchange Difference: \n", exchangeCStats)
+        return exchangeCStats
+
+    def sortCurrencyByROI(self):
+        roiCStats = self.controllerCStats
+        if (self.currencySort != "ROI"):
+            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True)
+            self.currencySort = "ROI"
+            self.currencyDirection = True
+        elif (self.currencySort == "ROI" and self.currencyDirection == True):
+            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'))
+            self.currencyDirection = False
+        else:
+            roiCStats = sorted(self.controllerCStats.items(), key=lambda x:getitem(x[1],'ROI'), reverse=True)
+            self.currencyDirection = True
+        print("\n By ROI: \n",roiCStats)
+        return roiCStats
 
 if __name__ == '__main__':
-    main()
+    model = Controller()
