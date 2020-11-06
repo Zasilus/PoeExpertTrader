@@ -5,11 +5,13 @@ import math
 import operator
 
 from CurrencyModel import CurrencyModel
-import DivinationModel
+from DivinationModel import DivinationModel
 
 class Controller:
     controllerCStats = dict()
+    controllerDStats = dict()
     cModel = CurrencyModel()
+    dModel = DivinationModel()
 
     currencySort = "None"
     currencyDirection = False
@@ -49,7 +51,9 @@ class Controller:
         self.sortCurrencyByROI()
 
     def getDivData(self):
-        "comment"
+        self.controllerDStats
+        self.divinationDirection = False
+        self.divinationSort = "None"
 
     def getCurrencyData(self):
         #cModel = CurrencyModel()
