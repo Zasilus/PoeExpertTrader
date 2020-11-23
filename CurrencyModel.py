@@ -9,14 +9,6 @@ class CurrencyModel:
         self.calculateROI()
         #print(self.currencyStats)
 
-<<<<<<< HEAD
-def main():
-    pullCurrency()
-    print("Currency Pulled Collected")
-    calculateROI()
-    print(currencyStats)
-    #print(currencyStats)
-=======
     def pullCurrency(self):
         #resp = requests.get("https://poe.ninja/api/data/currencyoverview?league=Heist&type=Currency")
         #raw_data = resp.content
@@ -35,7 +27,6 @@ def main():
             self.currencyStats.update({this_currency:curr_dict})
         chaos_dict = {"pay": 1, "receive": 1, "ChaosEquivalent": 1}
         self.currencyStats.update({"Chaos Orb": chaos_dict})
->>>>>>> div_mod_branch
 
     def calculateExchangeDifference(self):
         for x in self.currencyStats:
