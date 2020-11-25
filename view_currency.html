@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href= "view_template.css">
+</head>
+<body>
+    <br>
+    <center>
+        <top>Path of Exile: Expert Trader</top>
+    </center>
+    <hr>
+    <br>
+    <subtitle>Currency Stats</subtitle><br><br>
+    <table style="width:75%">
+        <tr>
+            <td>Currency</td>
+            <td>Selling Price</td>
+            <td>Buying Price</td>
+            <td>Chaos Equivalent</td>
+            <td>Exchange Rate</td>
+            <td>Return on Investment</td>
+        </tr>
+        {% for keys in cStats.keys() %}
+        <tr>
+            <td>{{keys}}<td>
+            {% for values in cStat[keys].values()%}
+                <td>{{values}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -2,6 +2,7 @@ import sched, time
 import threading
 
 from flask import Flask
+from flask import render_template
 from Controller import Controller
 
 app = Flask(__name__)
@@ -19,8 +20,9 @@ def main():
 
 def threadUpdateData():
     while True:
-        time.sleep(5)
+        #time.sleep(5)
         updateData()
+        time.sleep(500)
 
 def updateData():
     print("Updating Data")
@@ -32,6 +34,13 @@ def updateData():
 def home():
     global controller
     return controller.controllerCStats
+
+@app.route("/")
+@app.route("/currency")
+def Currency():
+    global controller
+    cStats = controller.controllerCStats
+    return render_template('view_currency.html', title = "Currency", cStats = cStats)
 
 if __name__ == '__main__':
     main()
