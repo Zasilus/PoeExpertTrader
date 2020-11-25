@@ -20,12 +20,9 @@
             <td>Exchange Rate</td>
             <td>Return on Investment</td>
         </tr>
-        {% for keys in cStats.keys() %}
+        {% for keys in cStats %}
         <tr>
             <td>{{keys}}<td>
-            {% for values in cStat[keys].values()%}
-                <td>{{values}}</td>
-            {% endfor %}
         </tr>
         {% endfor %}
     </table>

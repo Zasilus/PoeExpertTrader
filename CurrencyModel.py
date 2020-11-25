@@ -7,7 +7,6 @@ class CurrencyModel:
         self.pullCurrency()
         print("Currency Pulled Collected")
         self.calculateROI()
-        #print(self.currencyStats)
 
     def pullCurrency(self):
         #resp = requests.get("https://poe.ninja/api/data/currencyoverview?league=Heist&type=Currency")
@@ -34,6 +33,7 @@ class CurrencyModel:
             self.currencyStats[x].update({"difference":difference})
 
     def calculateROI(self):
+        print("Calculating ROI")
         self.calculateExchangeDifference()
         for x in self.currencyStats:
             difference = self.currencyStats[x]['difference']
