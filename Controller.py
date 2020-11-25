@@ -10,9 +10,9 @@ from DivinationModel import DivinationModel
 class Controller:
     controllerCStats = dict()
     controllerDStats = dict()
-    cModel = CurrencyModel()
     dModel = DivinationModel()
-
+    cModel = dModel.currencyModel
+    
     currencySort = "None"
     currencyDirection = False
 
