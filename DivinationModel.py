@@ -4,17 +4,21 @@ import re
 from CurrencyModel import CurrencyModel
 
 class DivinationModel:
-    divinationStats = dict()
-    uniqueItems = dict()
-    currencyModel = CurrencyModel()
+    divinationStats = None
+    uniqueItems = None
+    currencyModel = None
     def __init__(self):
-        self.pullDivination()
-        print("Divination Cards Pulled")
+        self.divinationStats = dict()
+        self.uniqueItems = dict()
+        self.currencyModel = CurrencyModel()
         self.pullUniqueStats()
-        self.calculatePricePerStack()
-        self.calculateSellValue()
+
+    def main(self):
+        self.pullDivination()
         self.calculateROI()
         self.calculateProfitPerCard()
+        print(self.divinationStats)
+        return self.divinationStats
 
     def pullDivination(self):
         f = open("divinationoverview.json", "r")
@@ -82,6 +86,8 @@ class DivinationModel:
             del self.divinationStats[x]
     
     def calculateProfitPerStack(self):
+        self.calculateSellValue()
+        self.calculatePricePerStack()
         for x in self.divinationStats:
             difference = self.divinationStats[x]["SellValue"] - self.divinationStats[x]["StackPrice"]
             self.divinationStats[x].update({"difference":difference})
@@ -101,8 +107,6 @@ class DivinationModel:
             value = self.divinationStats[x]['StackPrice']
             if value != 0.0:
                 roi = difference / value
-            else:
-                roi = 0
             self.divinationStats[x].update({"ROI":roi})
     
     def getDivModel(self):
@@ -145,3 +149,4 @@ class DivinationModel:
 
 if __name__ == '__main__':
     divModel = DivinationModel()
+    divModel.main()
