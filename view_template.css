@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Fjord One');
+@import url('https://fonts.googleapis.com/css?family=Geo');
+.center{
+    margin: auto;
+}
+top {
+    font-family:'Fjord One'; 
+    font-size: 50px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+subtitle {
+    font-family:'Fjord One'; 
+    font-size: 18px;
+    text-align: center;
+}
+middle {
+    font-family:'Fjord One';
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.button {
+    background-color: rgb(167, 41, 3);
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0s;
+}
+.button1 {
+    background-color: rgb(167, 41, 3);
+    color: black
+}
+
+.button1:hover {
+    background-color: rgb(255, 60, 0);
+}
