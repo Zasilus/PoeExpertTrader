@@ -41,6 +41,11 @@ def home():
     return controller.cModel.getCurrencyData()
 
 @app.route("/")
+@app.route("/homepage")
+def homepage():
+    return render_template('view_home.html', title = "homepage")
+
+@app.route("/")
 @app.route("/currency")
 def Currency():
     global controller
