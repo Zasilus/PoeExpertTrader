@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href= "template.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='template.css')}}">
 </head>
 <body>
     <br>
@@ -20,9 +20,12 @@
             <td>Exchange Rate</td>
             <td>Return on Investment</td>
         </tr>
-        {% for keys in cStats %}
+        {% for keys in cStats.keys() %}
         <tr>
-            <td>{{keys}}<td>
+            <td>{{keys}}</td>
+            {% for items in cStats[keys].values()%}
+                <td>{{items}}</td>
+            {% endfor %}
         </tr>
         {% endfor %}
     </table>

@@ -52,7 +52,7 @@ def Currency():
     cStats = controller.controllerCStats
     json_object = json.dumps(cStats, indent = 4)
     print(cStats)
-    return render_template('view_currency.html', title = "Currency", cStats = json_object)
+    return render_template('view_currency.html', title = "Currency", cStats = cStats)
 
 if __name__ == '__main__':
     main()
