@@ -38,7 +38,8 @@ def updateData():
 def home():
     global controller
     print(controller.cModel.getCurrencyData())
-    return controller.cModel.getCurrencyData()
+    print(controller.dModel.getDivModel())
+    return controller.dModel.getDivModel()
 
 @app.route("/")
 @app.route("/homepage")
@@ -53,6 +54,15 @@ def Currency():
     json_object = json.dumps(cStats, indent = 4)
     print(cStats)
     return render_template('view_currency.html', title = "Currency", cStats = cStats)
+
+@app.route("/")
+@app.route("/divination")
+def Divination():
+    global controller
+    dStats = controller.controllerDStats
+    json_object = json.dumps(dStats, indent = 4)
+    print(dStats)
+    return render_template('view_divination.html', title = "Divination", dStats = dStats)
 
 if __name__ == '__main__':
     main()

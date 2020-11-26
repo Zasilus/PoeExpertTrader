@@ -15,20 +15,22 @@
     <hr>
     <br>
     <center>
-        <subtitle>Currency Stats</subtitle><br><br>
+    <subtitle>Divination Card Stats</subtitle><br><br>
         <table style="width:75%">
             <tr>
-                <td>Currency</td>
-                <td>Selling Price</td>
-                <td>Buying Price</td>
-                <td>Chaos Equivalent</td>
-                <td>Exchange Rate</td>
+                <td>Divination Card</td>
+                <td>Price Per Card</td>
+                <td>Trade Item</td>
+                <td>Stack Size</td>
+                <td>Value of Trade Item</td>
+                <td>Price Per Stack</td>
+                <td>Net Profit</td>
                 <td>Return on Investment</td>
             </tr>
-            {% for keys in cStats.keys() %}
+            {% for keys in dStats.keys() %}
             <tr>
                 <td>{{keys}}</td>
-                {% for items in cStats[keys].values()%}
+                {% for items in dStats[keys].values()%}
                     <td>{{items}}</td>
                 {% endfor %}
             </tr>

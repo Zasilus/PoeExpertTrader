@@ -26,20 +26,35 @@ middle {
     background-color: rgb(167, 41, 3);
     border: none;
     color: rgb(0, 0, 0);
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
     transition-duration: 0s;
 }
 .button1 {
     background-color: rgb(167, 41, 3);
-    color: black
+    color: black;
+    font-size: 16px;
+    margin: 4px 2px;
+    padding: 15px 32px;
 }
 
 .button1:hover {
     background-color: rgb(255, 60, 0);
+}
+
+.button2 {
+    background-color: rgb(167, 41, 3);
+    color: black;
+    padding: 2px 4px;
+    font-size: 13px;
+    margin: 4x 2px;
+}
+
+.button2:hover {
+    background-color: rgb(255, 60, 0);
+    padding: 1px 2px;
+    font-size: 12px;
+    margin: 4px 2px;
 }

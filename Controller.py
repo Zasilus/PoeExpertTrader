@@ -22,6 +22,8 @@ class Controller:
     def __init__(self):
         self.getCurrencyData()
         self.sortCurrencyByROI()
+        self.getDivData()
+        self.sortDivinationByROI()
         
     def getDivData(self):
         self.controllerDStats
