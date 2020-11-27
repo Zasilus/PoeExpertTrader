@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script src="{{url_for('static', filename='d_scripts.js')}}"></script>
 <head>
 <link rel="stylesheet" href="{{ url_for('static', filename='template.css')}}">
 </head>
@@ -16,16 +17,16 @@
     <br>
     <center>
     <subtitle>Divination Card Stats</subtitle><br><br>
-        <table class="dataTable">
+        <table class="dataTable" id="DTable">
             <tr>
-                <th>Divination Card</th>
-                <th>Price Per Card</th>
+                <th>Divination Card   <button class="button button3" onclick="sortName()"><i class="arrow arrowdown"></i></button></th>
+                <th>Price Per Card   <button class="button button3" onclick="sortPPC()"><i class="arrow arrowdown"></i></button></th>
                 <th>Trade Item</th>
                 <th>Stack Size</th>
                 <th>Value of Trade Item</th>
-                <th>Price Per Stack</th>
-                <th>Net Profit</th>
-                <th>Return on Investment</th>
+                <th>Price Per Stack   <button class="button button3" onclick="sortPPS()"><i class="arrow arrowdown"></i></button></th>
+                <th>Net Profit   <button class="button button3" onclick="sortNet()"><i class="arrow arrowdown"></i></button></th>
+                <th>Return on Investment   <button class="button button3" onclick="sortROI()"><i class="arrow arrowdown"></i></button></th>
             </tr>
             {% for keys in dStats.keys() %}
             <tr>

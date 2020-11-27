@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="{{url_for('static', filename='c_scripts.js')}}"></script>
+</script>
 <head>
 <link rel="stylesheet" href="{{ url_for('static', filename='template.css')}}">
 </head>
@@ -16,14 +18,18 @@
     <br>
     <center>
         <subtitle>Currency Stats</subtitle><br><br>
-        <table class="dataTable">
+        <middle>Optimal Currency Calculator</middle><br>
+            <label for="cinput">Amount of Chaos</label>
+            <input type="number" id="cinput" name="cinput"><br>
+            <input type="submit" value="Find Optimal Currency"><br><br>
+        <table class="dataTable" id="CTable">
             <tr>
-                <th>Currency</th>
+                <th>Currency   <button class="button button3" onclick="sortName()"><i class="arrow arrowdown"></i></button></th>
                 <th>Selling Price</th>
                 <th>Buying Price</th>
                 <th>Chaos Equivalent</th>
-                <th>Exchange Rate</th>
-                <th>Return on Investment</th>
+                <th>Exchange Rate   <button class="button button3" onclick="sortExc()"><i class="arrow arrowdown"></i></button></th>
+                <th>Return on Investment   <button class="button button3" onclick="sortROI()"><i class="arrow arrowdown"></i></button></th>
             </tr>
             {% for keys in cStats.keys() %}
             <tr>
