@@ -41,9 +41,6 @@ function filterNames() {
     }
 }
 
-function calculateOptimalCurrency( chaosAmount ){
-    
-}
 function sortExc() {
     var table, rows, switcher, idx, x, y, switchBool;
     table = document.getElementById("CTable");
@@ -66,6 +63,19 @@ function sortExc() {
         }
     }
 }
+
+function submitOptimalCurrencyForm() {
+    var http = new XMLHttpRequest();
+    http.open("POST", "/optimalcurrency", true);
+    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var params = "cinput=" + document.getElementById("cinput").value
+    http.send(params);
+    http.onload = function() {
+        var divField = document.getElementById("optimalCurrencyDiv")
+        divField.innerHTML = "The optimal currency for you to be trading is :" + http.responseText
+    }
+}
+
 function sortROI() {
     var table, rows, switcher, idx, x, y, switchBool;
     table = document.getElementById("CTable");
