@@ -46,7 +46,11 @@ class Controller:
         for x in self.controllerCStats:
             currency_Name = currency_List[counter]
             currency_Get = math.floor(chaosAmount/self.controllerCStats[x]['pay'])
+            if currency_Get > 1000:
+                currency_Get = 1000
             currency_Return = currency_Get * self.controllerCStats[x]['ROI']
+            #print("Current optimal is ", optimal_Currency, " at ", optimal_value)
+            #print(currency_Name, " is worth ", currency_Return)
             if (currency_Return > optimal_value):
                 optimal_value = currency_Return
                 optimal_Currency = currency_Name
