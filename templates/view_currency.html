@@ -19,9 +19,11 @@
     <center>
         <subtitle>Currency Stats</subtitle><br><br>
         <middle>Optimal Currency Calculator</middle><br>
+        <form action="/optimalcurrency" method="POST">
             <label for="cinput">Amount of Chaos</label>
             <input type="number" id="cinput" name="cinput"><br>
             <input type="submit" value="Find Optimal Currency"><br><br>
+        </form>
             <input type="text" id = "CFilter" onkeyup="filterNames()" placeholder = "Filter Currencies by name">
         <table class="dataTable" id="CTable">
             <tr>

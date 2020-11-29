@@ -158,7 +158,7 @@ class Controller:
             self.divinationDirection = True
         #print("\n By ROI: \n", roiDStats)
         return roiDStats
-    
+
     def filterCurrency(self):
         "empty"
 

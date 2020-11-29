@@ -4,6 +4,7 @@ import json
 
 from flask import Flask
 from flask import render_template
+from flask import request
 from Controller import Controller
 
 app = Flask(__name__)
@@ -40,6 +41,20 @@ def home():
     print(controller.cModel.getCurrencyData())
     print(controller.dModel.getDivModel())
     return controller.dModel.getDivModel()
+
+@app.route("/")
+@app.route("/optimalcurrency", methods=["GET", "POST"])
+def getOptimalCurrency():
+    global controller
+    if request.method == "POST":
+        req = request.form
+        print(req)
+        print(req['cinput'])
+        return controller.calculateCurrencyOptimal(int(req['cinput']))
+    print("Entering Optimal CUrrency")
+    return controller.calculateCurrencyOptimal(100)
+
+
 
 @app.route("/")
 @app.route("/homepage")

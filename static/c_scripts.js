@@ -40,6 +40,10 @@ function filterNames() {
         }
     }
 }
+
+function calculateOptimalCurrency( chaosAmount ){
+    
+}
 function sortExc() {
     var table, rows, switcher, idx, x, y, switchBool;
     table = document.getElementById("CTable");
