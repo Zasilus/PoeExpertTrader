@@ -20,6 +20,26 @@ function sortName() {
         }
     }
 }
+function filterNames() {
+    var table = document.getElementById("CTable");
+    var forminput = document.getElementById("CFilter");
+    var tr = table.getElementsByTagName("tr")
+    console.log(forminput.value)
+    var filterString = forminput.value.toUpperCase();
+    for (i = 0; i < tr.length; i++){
+        td = tr[i].getElementsByTagName("td")[0];
+        if(td) {
+            currencyName = td.textContent || td.innerText;
+            if(currencyName.toUpperCase().indexOf(filterString) > -1)
+            {
+                tr[i].style.display = "";
+            }
+            else{
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 function sortExc() {
     var table, rows, switcher, idx, x, y, switchBool;
     table = document.getElementById("CTable");
