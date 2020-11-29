@@ -25,7 +25,7 @@ def threadUpdateData():
     while True:
         #time.sleep(5)
         updateData()
-        time.sleep(500)
+        time.sleep(3000)
 
 def updateData():
     print("Updating Data")
@@ -48,12 +48,10 @@ def getOptimalCurrency():
     global controller
     if request.method == "POST":
         req = request.form
-        print(req)
-        print(req['cinput'])
-        return controller.calculateCurrencyOptimal(int(req['cinput']))
-    print("Entering Optimal CUrrency")
-    return controller.calculateCurrencyOptimal(100)
-
+        amt = controller.calculateCurrencyOptimal(int(req['cinput']))
+        return amt
+    else:
+        return ""
 
 
 @app.route("/")
@@ -67,7 +65,6 @@ def Currency():
     global controller
     cStats = controller.controllerCStats
     json_object = json.dumps(cStats, indent = 4)
-    print(cStats)
     return render_template('view_currency.html', title = "Currency", cStats = cStats)
 
 @app.route("/")

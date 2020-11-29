@@ -72,7 +72,7 @@ function submitOptimalCurrencyForm() {
     http.send(params);
     http.onload = function() {
         var divField = document.getElementById("optimalCurrencyDiv")
-        divField.innerHTML = "The optimal currency for you to be trading is :" + http.responseText
+        divField.innerHTML = "The optimal currency for you to be trading is: " + http.responseText
     }
 }
 
