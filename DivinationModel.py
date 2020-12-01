@@ -21,12 +21,12 @@ class DivinationModel:
         return self.divinationStats
 
     def pullDivination(self):
-        f = open("divinationoverview.json", "r")
-        raw_data = f.read()
-        #respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=Blight&type=DivinationCard")
-        #raw_div_data = respDiv.content
-        f.close()
-        json_div_results = json.loads(raw_data)
+        #f = open("divinationoverview.json", "r")
+        #raw_data = f.read()
+        respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=Heist&type=DivinationCard")
+        raw_div_data = respDiv.content
+        #f.close()
+        json_div_results = json.loads(raw_div_data)
 
         for x in range(len(json_div_results["lines"])):
             if(json_div_results["lines"][x]['chaosValue'] > 1):

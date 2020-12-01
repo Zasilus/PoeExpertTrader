@@ -37,10 +37,7 @@ def updateData():
 
 @app.route("/")
 def home():
-    global controller
-    print(controller.cModel.getCurrencyData())
-    print(controller.dModel.getDivModel())
-    return controller.dModel.getDivModel()
+    return render_template('view_home.html', title = "homepage")
 
 @app.route("/")
 @app.route("/optimalcurrency", methods=["GET", "POST"])
