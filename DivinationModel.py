@@ -22,7 +22,7 @@ class DivinationModel:
 
     def pullDivination(self):
         #f = open("divinationoverview.json", "r")
-        #raw_data = f.read()
+        #raw_div_data = f.read()
         respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=Heist&type=DivinationCard")
         raw_div_data = respDiv.content
         #f.close()
