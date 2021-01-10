@@ -4,6 +4,7 @@ import re
 from CurrencyModel import CurrencyModel
 
 class DivinationModel:
+    currentLeague = "Heist"
     divinationStats = None
     uniqueItems = None
     currencyModel = None
@@ -23,7 +24,7 @@ class DivinationModel:
     def pullDivination(self):
         #f = open("divinationoverview.json", "r")
         #raw_div_data = f.read()
-        respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=Heist&type=DivinationCard")
+        respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league="+self.currentLeague+"&type=DivinationCard")
         raw_div_data = respDiv.content
         #f.close()
         json_div_results = json.loads(raw_div_data)
@@ -42,17 +43,17 @@ class DivinationModel:
        # print(self.divinationStats)
 
     def pullUniqueStats(self):
-        self.updateUniqueDict("uniquearmor.json")
-        self.updateUniqueDict("uniqueweapon.json")
-        self.updateUniqueDict("uniqueaccessory.json")
-        self.updateUniqueDict("uniqueflask.json")
-        self.updateUniqueDict("uniquejewel.json")
-        self.updateUniqueDict("prophecyoverview.json")
+        self.updateUniqueDict("UniqueArmour")
+        self.updateUniqueDict("UniqueWeapon")
+        self.updateUniqueDict("UniqueAccessory")
+        self.updateUniqueDict("UniqueFlask")
+        self.updateUniqueDict("UniqueJewel")
+        self.updateUniqueDict("Prophecy")
+        self.updateUniqueDict("UniqueMap")
 
     def updateUniqueDict(self, fileName):
-        f = open(fileName, "r")
-        raw_data = f.read()
-        f.close()
+        respDiv = requests.get("https://poe.ninja/api/data/itemoverview?league=" + self.currentLeague + "&type=" + fileName)
+        raw_data = respDiv.content
         json_result = json.loads(raw_data)
 
         for x in range(len(json_result["lines"])):

@@ -17,8 +17,11 @@ class CurrencyModel:
         json_result = json.loads(raw_data)
         for x in range(len(json_result["lines"])):
             this_currency = json_result["lines"][x]['currencyTypeName']
+            print(this_currency)
             this_price = json_result["lines"][x]['chaosEquivalent']
             if json_result["lines"][x]["pay"] == None:
+                continue
+            if json_result["lines"][x]["receive"] == None:
                 continue
             this_sell_price = 1 / json_result["lines"][x]["pay"]["value"]
             this_buy_price = json_result["lines"][x]["receive"]["value"]
