@@ -18,7 +18,6 @@ class DivinationModel:
         self.pullDivination()
         self.calculateROI()
         self.calculateProfitPerCard()
-        print(self.divinationStats)
         return self.divinationStats
 
     def pullDivination(self):
@@ -119,13 +118,11 @@ class DivinationModel:
     def getItemValue(self,itemName):
         #Check the Unique dictionary to see if its an item that exists inside it
         if itemName in self.uniqueItems:
-            #print(self.uniqueItems[itemName])
             return self.uniqueItems[itemName]
         else:
             #Check to see if it is in the currency dictionary if it isn't we will have to check for for example 10x item
             currencyData = self.currencyModel.getCurrencyData()
             if itemName in currencyData:
-                #print(currencyData[itemName]["ChaosEquivalent"])
                 return currencyData[itemName]["ChaosEquivalent"]
             #Checking to see if it is multiple currencies
             elif bool(re.search(r'\dx', itemName)):

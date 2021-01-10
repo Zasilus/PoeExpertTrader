@@ -15,7 +15,6 @@ def main():
     global controller
     print("Entering Main method")
     controller = Controller()
-    print(controller.controllerCStats)
     x = threading.Thread(target=threadUpdateData)
     x.daemon = True
     x.start()
@@ -70,7 +69,6 @@ def Divination():
     global controller
     dStats = controller.controllerDStats
     json_object = json.dumps(dStats, indent = 4)
-    print(dStats)
     return render_template('view_divination.html', title = "Divination", dStats = dStats)
 
 if __name__ == '__main__':
