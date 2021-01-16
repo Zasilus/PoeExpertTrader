@@ -89,25 +89,30 @@ class DivinationModel:
         self.calculateSellValue()
         self.calculatePricePerStack()
         for x in self.divinationStats:
-            difference = self.divinationStats[x]["SellValue"] - self.divinationStats[x]["StackPrice"]
-            self.divinationStats[x].update({"difference":difference})
+            if self.divinationStats[x]["SellValue"] is not None and self.divinationStats[x]["StackPrice"] is not None:
+                difference = self.divinationStats[x]["SellValue"] - self.divinationStats[x]["StackPrice"]
+                self.divinationStats[x].update({"difference":difference})
     
     def calculateProfitPerCard(self):
         self.calculateProfitPerStack()
         for x in self.divinationStats:
-            difference = self.divinationStats[x]['difference']
-            stackSize = self.divinationStats[x]['stackSize']
-            profit = difference / stackSize
-            self.divinationStats[x].update({"profitPerCard":profit})
+            if self.divinationStats[x]['difference'] is not None and self.divinationStats[x]['stackSize'] is not None:
+                difference = self.divinationStats[x]['difference']
+                stackSize = self.divinationStats[x]['stackSize']
+                profit = difference / stackSize
+                self.divinationStats[x].update({"profitPerCard":profit})
 
     def calculateROI(self):
         self.calculateProfitPerStack()
         for x in self.divinationStats:
-            difference = self.divinationStats[x]['difference']
-            value = self.divinationStats[x]['StackPrice']
-            if value != 0.0:
-                roi = difference / value
-            self.divinationStats[x].update({"ROI":roi})
+            if 'difference' in self.divinationStats[x]:
+                difference = self.divinationStats[x]['difference']
+                value = self.divinationStats[x]['StackPrice']
+                if value != 0.0:
+                    roi = difference / value
+                self.divinationStats[x].update({"ROI":roi})
+            else:
+                self.divinationStats[x].update({"ROI":0})
     
     def getDivModel(self):
         return self.divinationStats
@@ -128,8 +133,10 @@ class DivinationModel:
             elif bool(re.search(r'\dx', itemName)):
                 item = itemName[itemName.find(' ')+1:]
                 quantity = int(itemName[0:itemName.find('x')])
-                currencyPrice = currencyData[item]["ChaosEquivalent"]
-                return quantity * currencyPrice
+                if item in currencyData:
+                    print(currencyData[item])
+                    currencyPrice = currencyData[item]["ChaosEquivalent"]
+                    return quantity * currencyPrice
             else:
                 return 0
             
