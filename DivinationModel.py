@@ -4,7 +4,7 @@ import re
 from CurrencyModel import CurrencyModel
 
 class DivinationModel:
-    currentLeague = "Heist"
+    currentLeague = "Ritual"
     divinationStats = None
     uniqueItems = None
     currencyModel = None

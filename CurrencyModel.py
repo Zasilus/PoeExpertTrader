@@ -9,7 +9,7 @@ class CurrencyModel:
         self.calculateROI()
 
     def pullCurrency(self):
-        resp = requests.get("https://poe.ninja/api/data/currencyoverview?league=Heist&type=Currency")
+        resp = requests.get("https://poe.ninja/api/data/currencyoverview?league=Ritual&type=Currency")
         raw_data = resp.content
         #f = open("currencyoverview.json", "r")
         #raw_data = f.read()
